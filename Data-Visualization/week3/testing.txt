@@ -1,0 +1,39 @@
+# gdpinfo = {
+#         "gdpfile": "isp_gdp.csv",
+#         "separator": ",",
+#         "quote": '"',
+#         "min_year": 1960,
+#         "max_year": 2015,
+#         "country_name": "Country Name",
+#         "country_code": "Country Code"
+#     }
+
+# print(read_csv_as_nested_dict(gdpinfo["gdpfile"], gdpinfo["country_name"], gdpinfo["separator"], gdpinfo["quote"]))
+# print(build_plot_values(gdpinfo, {'1985': '10', '1990': '20', '1995': '30'}))
+
+
+# print(build_plot_values({'gdpfile': '', 'separator': '', 'quote': '', 'min_year': 1980, 'max_year': 2000, 'country_name': 'Country Name', 'country_code': 'Code'}, {'1965': 'abc', '19853': '36', '2003': -7385.4, 'Info': 'information'}) )
+
+# build_plot_dict(gdpinfo, gdpinfo["country_name"])
+
+# print(build_plot_dict({'gdpfile': 'gdptable1.csv', 'separator': ',', 'quote': '"', 'min_year': 2000, 'max_year': 2005, 'country_name': 'Country Name', 'country_code': 'Code'}, ['Country1']))
+
+
+ reconcile_countries_by_name({'pr': 'Puerto Rico', 'no': 'Norway', 'us': 'United States'}, {'United States': {'Country Name': 'United States', 'Country Code': 'USA'}, 'Norway': {'Country Name': 'Norway', 'Country Code': 'NOR'}, 'Puerto Rico': {'Country Name': 'Puerto Rico', 'Country Code': 'PRI'}})
+ 
+ plot = {'pr': 'Puerto Rico', 'no': 'Norway', 'us': 'United States'}
+ 
+ gdp = {'United States': {
+ 'Country Name': 'United States', 'Country Code': 'USA'
+ }, 
+ 'Norway': {'Country Name': 'Norway', 'Country Code': 'NOR'
+ }, 
+ 'Puerto Rico': {'Country Name': 'Puerto Rico', 'Country Code': 'PRI'}
+ }
+ 
+ 
+ gdp_dict, not_match_set, not_found_set = build_map_dict_by_name(gdpinfo, plot_countries, year)
+    world_map_chart = pygal.maps.world.World()
+    world_map_chart.title = "GDP by country for " + year + " (log scale), unified by common country NAME"
+    world_map_chart.add("GDP for " + year, gdp_dict)
+    world_map_chart.render_to_file(map_file)
